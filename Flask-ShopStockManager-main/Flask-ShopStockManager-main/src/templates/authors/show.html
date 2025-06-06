@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="top-banner-wrapper bg-dark text-shadow">
+    <span class="banner-title">Authors</span>
+    <nav class="top-banner">
+        <ul>
+            <li>
+                <button class="border-btn">
+                    <a title="Go to previous page" href="/authors">
+                        <i class="fa fa-hand-o-left"></i>
+                    </a>
+                </button>
+            </li>
+            <li>
+                <button class="border-btn">
+                    <a title="Create new entry" href="/authors/new">New</a>
+                </button>
+            </li>
+            <li>
+                <button class="border-btn">
+                <a title="Edit current entry" href="{{ request.path }}/edit">Edit</a>
+                </button>
+            </li>
+            <li>
+                <form class="delete-btn" title="Delete current entry" action="{{ request.path }}/delete" method='POST'>
+                    <input class="text-shadow" type="submit" value="Delete">
+                </form>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<div class="container author flex-container">
+    <div class="info">
+        <h3> {{ author.name }} </h2>
+    </div>
+    <div class="works">
+        <h4>Works by author:</h3>
+            <ul>
+                {% for book in books_by_author %}
+                <li><a href="/books/{{ book.id }}"> {{ book.title }} </a></li>
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for book in books_by_illustrator %}
+                <li><a href="/books/{{ book.id }}"> {{ book.title }} (illustrator)</a></li>
+                {% endfor %}
+            </ul>
+    </div>
+
+</div>
+{% endblock %}

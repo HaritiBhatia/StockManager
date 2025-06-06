@@ -1,0 +1,68 @@
+/* CSS for card components used in /books */
+
+.card-list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+
+.card-container {
+    border-radius: 7px;
+    /* box-shadow #32 from https://getcssscan.com/css-box-shadow-examples  */
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    padding: 1vh 1vw;
+    flex-basis: 40%;
+    margin: 2vh 0.5vw;
+    height: 40vh;
+    background-color: var(--bg-colour);
+}
+
+.card-container > .card {
+    display: flex;
+    padding: 1vh 1vw;
+    align-items: baseline;
+}
+
+/* Effect in card only in /books */
+.card-container > .card.card-index_template {
+    opacity: 0.7;
+    transition: ease-in-out;
+    transition-duration: 0.15s;
+}
+
+.card-container > .card.card-index_template:hover {
+    padding: 1.05vh 1.1vw;
+    opacity: 1;
+}
+
+.card > .card-item {
+    padding: 1vh 1vw;
+    height: 90%;
+}
+
+.card > .card-item.card-info {
+    flex-basis: 78%;
+    font-size:large;
+}
+
+.card > .card-item.card-pricing {
+    flex-basis: 22%;
+    text-align: right;
+}
+
+.card-pricing {
+    display: flex;
+    padding: 1vh 4vw;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.card-pricing_stock {
+    font-size: larger;
+    font-weight: bolder;
+}
+
+.card-pricing_stock-large {
+    font-size: xx-large !important;
+}

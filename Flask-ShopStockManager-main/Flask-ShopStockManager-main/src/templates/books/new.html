@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="top-banner-wrapper bg-dark text-shadow">
+    <span class="banner-title">Books inventory</span>
+    <nav class="top-banner">
+        <ul>
+            <li>
+                <button class="border-btn">
+                    <a title="Go to previous page" href="/books">
+                        <i class="fa fa-hand-o-left"></i>
+                    </a>
+                </button>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<div class="container">
+
+    <div class="form-book-container form-container">
+        <form action="{{ request.referrer | default('/') }}" method="POST" class="flex-container flex-column">
+            <h3>Create new book:</h3>
+            <div class="flex-container">
+                <div class="form-container_item">
+                    <div class="form-group">
+                        <label for="isbn">ISBN:</label>
+                        <input type="text" name="isbn" id="isbn" required autofocus>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input type="text" name="title" id="title" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="genre">Genre:</label>
+                        <input type="text" name="genre" id="genre" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="author_id">Author:</label>
+                        <select id="author_id" name="author_id" required>
+                            <option value="blank" disabled selected>Select...</option>
+                            {% for author in authors %}
+                            <option value="{{ author.id }}">{{ author.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="illustrator_id">Illustrator:</label>
+                        <select id="illustrator_id" name="illustrator_id" required>
+                            <option value="blank" disabled selected>Select...</option>
+                            {% for illustrator in illustrators %}
+                            <option value="{{ illustrator.id }}">{{ illustrator.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-container_item">
+                    <div class="form-group">
+                        <label for="publisher_id">Publisher:</label>
+                        <select id="publisher_id" name="publisher_id" required>
+                            <option value="blank" disabled selected>Select...</option>
+                            {% for publisher in publishers %}
+                            <option value="{{ publisher.id }}">{{ publisher.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edition">Edition:</label>
+                        <input type="number" name="edition" id="edition" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cost">Cost:</label>
+                        <input type="number" step="0.01" name="cost" id="cost" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price">Price:</label>
+                        <input type="number" step="0.01" name="price" id="price" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stock">Stock:</label>
+                        <input type="number" name="stock" id="stock" required>
+                    </div>
+
+                    <div class="submit-container add-btn">
+                        <input type="submit" value="Add">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

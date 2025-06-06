@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <title>{{ title }} - Inventory Manager </title>
+</head>
+
+<body>
+    <header class="bg-dark">
+        <header>
+            <h1>Inventory Manager</h1>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/books">Books</a></li>
+                <li><a href="/publishers">Publishers</a></li>
+                <li><a href="/authors">Authors</a></li>
+            </ul>
+        </nav>
+        <footer>
+            <div class="footer-wrapper">
+                <h3>by Clau</h3>
+            </div>
+            <div class="icon-wrapper">
+                <a href="https://github.com/clauRamirez/"><i class="fa fa-github-square" aria-hidden="true"></i></a>
+            </div>
+        </footer>
+
+    </header>
+
+    <main class="bg-img bg-img-{{ range(1, 7) | random }}">
+        <div class="content-wrapper">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+
+</body>
+
+</html>

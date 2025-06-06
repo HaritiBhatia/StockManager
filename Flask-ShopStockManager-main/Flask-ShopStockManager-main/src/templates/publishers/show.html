@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="top-banner-wrapper bg-dark text-shadow">
+    <span class="banner-title">Publishers</span>
+    <nav class="top-banner">
+        <ul>
+            <li>
+                <button class="border-btn">
+                    <a title="Go to previous page" href="/publishers">
+                        <i class="fa fa-hand-o-left"></i>
+                    </a>
+                </button>
+            </li>
+            <li>
+                <button class="border-btn">
+                    <a title="Create new entry" href="/publishers/new">New</a>
+                </button>
+            </li>
+            <li>
+                <button class="border-btn">
+                    <a title="Edit current entry" href="{{ request.path }}/edit">Edit</a>
+                </button>
+            </li>
+            <li>
+                <form class="delete-btn" title="Delete current entry" action="{{ request.path }}/delete" method='POST'>
+                    <input class="text-shadow" type="submit" value="Delete">
+                </form>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<div class="container publisher flex-container">
+
+    <div class="info">
+        <ul>
+            <li>
+                <h3>{{ publisher.name }} </h3>
+            </li>
+            <li> {{ publisher.website }} </li>
+            <li> {{ publisher.salesperson }} </li>
+            {% if publisher.contact != None %}
+            <li> {{ publisher.contact }} </li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <div class="works">
+        <h4>Works by publisher:</h4>
+        <ul>
+            {% for book in books %}
+            <li><a href="/books/{{ book.id }}">{{ book.title }} <i>({{ book.edition }} Ed.)</i></a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

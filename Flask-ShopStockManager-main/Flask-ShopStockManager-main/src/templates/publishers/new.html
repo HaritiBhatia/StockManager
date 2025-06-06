@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="top-banner-wrapper bg-dark text-shadow">
+    <span class="banner-title">Publishers</span>
+    <nav class="top-banner">
+        <ul>
+            <li>
+                <button class="border-btn">
+                    <a title="Go to previous page" href="/publishers">
+                        <i class="fa fa-hand-o-left"></i>
+                    </a>
+                </button>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<div class="container">
+
+    <div class="form-container">
+        <form action="{{ request.referrer | default('/') }}" method='POST'>
+            <h3>Create new publisher:</h3>
+
+            <div class="form-group">
+                <label for="name">Company:</label>
+                <input type="text" name="name" id="name" required autofocus>
+            </div>
+
+            <div class="form-group">
+                <label for="website">Website:</label>
+                <input type="text" name="website" id="website" required>
+            </div>
+
+            <div class="form-group">
+                <label for="salesperson">Salesperson:</label>
+                <input type="text" name="salesperson" id="salesperson">
+            </div>
+
+            <div class="form-group">
+                <label for="contact">Contact:</label>
+                <input type="text" name="contact" id="contact">
+            </div>
+
+            <div class="submit-container add-btn">
+                <input type="submit" value="Add">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

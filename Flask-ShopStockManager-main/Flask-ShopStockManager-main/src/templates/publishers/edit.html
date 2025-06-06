@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="top-banner-wrapper bg-dark text-shadow">
+    <span class="banner-title">Publishers</span>
+    <nav class="top-banner">
+        <ul>
+            <li>
+                <button class="border-btn">
+                    <a title="Go to previous page" href="{{ request.referrer }}">
+                        <i class="fa fa-hand-o-left"></i>
+                    </a>
+                </button>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<div class="container">
+
+    <div class="form-container">
+        <form action="/publishers/{{publisher.id}}" method='POST'>
+            <h3>Publisher:</h3>
+
+            <div class="form-group">
+                <label for="name">Company:</label>
+                <input type="text" name="name" id="name" value="{{ publisher.name }}" required autofocus>
+            </div>
+
+            <div class="form-group">
+                <label for="website">Website:</label>
+                <input type="text" name="website" id="website" value="{{ publisher.website }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="salesperson">Salesperson:</label>
+                <input type="text" name="salesperson" id="salesperson" {% if publisher.contact !=None %}
+                    value="{{ publisher.salesperson }}" {% endif %}>
+            </div>
+
+            <div class="form-group">
+                <label for="contact">Contact:</label>
+                <input type="text" name="contact" id="contact" {% if publisher.contact !=None %}
+                    value="{{ publisher.contact }}" {% endif %}>
+            </div>
+
+            <div class="submit-container add-btn">
+                <input type="submit" value="Update">
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="top-banner-wrapper bg-dark text-shadow">
+    <span class="banner-title">Books inventory</span>
+    <nav class="top-banner">
+        <ul>
+            <li>
+                <button class="border-btn">
+                    <a title="Create new entry" href="/books/new">New</a>
+                </button>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<div class="search-container-wrapper">
+    <form class="search-container" action="{{ request.path }}" method="GET">
+        <select class="search-container-item" name="publisher" id="publisher">
+            <option value="blank" selected disabled>Publisher...</option>
+            {% for publisher in publishers %}
+            <option value="{{ publisher.id }}">{{publisher.name}}</option>
+            {% endfor %}
+        </select>
+        <button class="search-btn search-container-item">
+            <input type="submit" value="Go">
+        </button>
+    </form>
+
+    <form class="search-container" action="{{ request.path }}" method="GET">
+        <select class="search-container-item" name="author" id="author">
+            <option value="blank" selected disabled>Author...</option>
+            {% for author in authors %}
+            <option value="{{ author.id }}">{{author.name}}</option>
+            {% endfor %}
+        </select>
+        <button class="search-btn search-container-item">
+            <input type="submit" value="Go">
+        </button>
+    </form>
+    <form class="search-container " action="{{ request.path }}" method="GET">
+        <select class="search-container-item" name="genre" id="genre">
+            <option value="blank" selected disabled>Genre...</option>
+            {% for genre in genres %}
+            <option value="{{ genre|lower }}">{{ genre }}</option>
+            {% endfor %}
+        </select>
+        <button class="search-btn search-container-item">
+            <input type="submit" value="Go">
+        </button>
+    </form>
+    <button class="search-btn">
+        <a href="/books">Show all</a>
+    </button>
+</div>
+
+<div class="container">
+    <div class="flex-container flex-column">
+        <h2>List of books:</h2>
+        <div class="card-list">
+            {% for book in books %}
+            <div class="card-container {% if book.stock < 5 %}low-stock-border{% endif %}">
+                <div class="card card-index_template">
+                    <div class="card-item card-info">
+                        <a href="{{ request.path }}/{{ book.id }}">
+                            <li>{{ book.isbn }}</li>
+                            <li>{{ book.title }} <i>({{ book.edition }} Ed.)</i> </li>
+                            <hr>
+                            <li>{{ book.author.name }}</li>
+                            <li>{{ book.illustrator.name }} <i>(Illutrator)</i></li>
+                            <li>{{ book.publisher.name }}</li>
+                            <li>{{ book.genre }}</li>
+                            <li></li>
+                    </div>
+                    <div class="card-item card-pricing">
+                        <li class='card-pricing_stock {% if book.stock < 5 %}low-stock-font{% endif %}'> {{ book.stock
+                            }}</li>
+                        <li>£{{ book.price }}</li>
+                        <li>£{{ book.cost }}</li>
+                        <hr>
+                        <li>£{{ book.get_mark_up() }}</li>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

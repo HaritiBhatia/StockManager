@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="top-banner-wrapper bg-dark text-shadow">
+    <span class="banner-title">Authors</span>
+    <nav class="top-banner">
+        <ul>
+            <li>
+                <button class="border-btn">
+                    <a title="Create new entry" href="/authors/new">New</a>
+                </button>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<div class="container author">
+
+    <h2>List of authors:</h1>
+        <ul>
+            {% for author in authors %}
+            <li><a href="{{ request.path }}/{{ author.id }}"> {{ author.name }} </a></li>
+            {% endfor %}
+        </ul>
+</div>
+
+{% endblock %}
